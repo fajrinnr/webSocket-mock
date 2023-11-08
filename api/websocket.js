@@ -1,25 +1,25 @@
 const express = require("express");
 const { WebSocketServer } = require("ws");
-const data1mBTC = require("./constants/BTC/data1m");
-const data15mBTC = require("./constants/BTC/data15m");
-const data1HBTC = require("./constants/BTC/data1H");
-const data4HBTC = require("./constants/BTC/data4H");
-const data1DBTC = require("./constants/BTC/data1D");
-const data1WBTC = require("./constants/BTC/data1W");
+const data1mBTC = require("../constants/BTC/data1m");
+const data15mBTC = require("../constants/BTC/data15m");
+const data1HBTC = require("../constants/BTC/data1H");
+const data4HBTC = require("../constants/BTC/data4H");
+const data1DBTC = require("../constants/BTC/data1D");
+const data1WBTC = require("../constants/BTC/data1W");
 
-const data1mETH = require("./constants/ETH/data1m");
-const data15mETH = require("./constants/ETH/data15m");
-const data1HETH = require("./constants/ETH/data1H");
-const data4HETH = require("./constants/ETH/data4H");
-const data1DETH = require("./constants/ETH/data1D");
-const data1WETH = require("./constants/ETH/data1W");
+const data1mETH = require("../constants/ETH/data1m");
+const data15mETH = require("../constants/ETH/data15m");
+const data1HETH = require("../constants/ETH/data1H");
+const data4HETH = require("../constants/ETH/data4H");
+const data1DETH = require("../constants/ETH/data1D");
+const data1WETH = require("../constants/ETH/data1W");
 
-const data1mDOGE = require("./constants/DOGE/data1m");
-const data15mDOGE = require("./constants/DOGE/data15m");
-const data1HDOGE = require("./constants/DOGE/data1H");
-const data4HDOGE = require("./constants/DOGE/data4H");
-const data1DDOGE = require("./constants/DOGE/data1D");
-const data1WDOGE = require("./constants/DOGE/data1W");
+const data1mDOGE = require("../constants/DOGE/data1m");
+const data15mDOGE = require("../constants/DOGE/data15m");
+const data1HDOGE = require("../constants/DOGE/data1H");
+const data4HDOGE = require("../constants/DOGE/data4H");
+const data1DDOGE = require("../constants/DOGE/data1D");
+const data1WDOGE = require("../constants/DOGE/data1W");
 
 const clients = new Map();
 const app = express();
