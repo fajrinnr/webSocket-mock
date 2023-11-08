@@ -23,7 +23,10 @@ const data1WDOGE = require("../constants/DOGE/data1W");
 
 const clients = new Map();
 const app = express();
+
 const server = require("http").createServer(app);
+
+// Create a WebSocketServer instance
 const wss = new WebSocketServer({ noServer: true });
 
 server.on("upgrade", (request, socket, head) => {
@@ -56,50 +59,7 @@ wss.on("connection", function connection(ws, req) {
 
 // Function to fetch data from Google Apps Script Web App
 function fetchSpreadsheetData(params) {
-  let dataCandle = [];
-  if (params.symbol === "BTC") {
-    if (params.interval === "1m") {
-      dataCandle = data1mBTC;
-    } else if (params.interval === "15m") {
-      dataCandle = data15mBTC;
-    } else if (params.interval === "1h") {
-      dataCandle = data1HBTC;
-    } else if (params.interval === "4h") {
-      dataCandle = data4HBTC;
-    } else if (params.interval === "1d") {
-      dataCandle = data1DBTC;
-    } else if (params.interval === "1w") {
-      dataCandle = data1WBTC;
-    }
-  } else if (params.symbol === "ETH") {
-    if (params.interval === "1m") {
-      dataCandle = data1mETH;
-    } else if (params.interval === "15m") {
-      dataCandle = data15mETH;
-    } else if (params.interval === "1h") {
-      dataCandle = data1HETH;
-    } else if (params.interval === "4h") {
-      dataCandle = data4HETH;
-    } else if (params.interval === "1d") {
-      dataCandle = data1DETH;
-    } else if (params.interval === "1w") {
-      dataCandle = data1WETH;
-    }
-  } else if (params.symbol === "DOGE") {
-    if (params.interval === "1m") {
-      dataCandle = data1mDOGE;
-    } else if (params.interval === "15m") {
-      dataCandle = data15mDOGE;
-    } else if (params.interval === "1h") {
-      dataCandle = data1HDOGE;
-    } else if (params.interval === "4h") {
-      dataCandle = data4HDOGE;
-    } else if (params.interval === "1d") {
-      dataCandle = data1DDOGE;
-    } else if (params.interval === "1w") {
-      dataCandle = data1WDOGE;
-    }
-  }
+  // ... (your existing code for data fetching)
 
   const result = {
     a: [...Array(100)].map(() => [Math.random() * 10000, Math.random() * 10]),
@@ -116,14 +76,10 @@ setInterval(() => {
     const param = clients.get(client);
     const data = fetchSpreadsheetData(param);
 
-    // if (client.readyState === WebSocket.OPEN) {
-    client.send(JSON.stringify(data));
-    // }
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(JSON.stringify(data));
+    }
   });
 }, 1000); // Fetch and send data every 5 seconds
 
-server.listen(8080, () => {
-  console.log("Listening on http://localhost:8080");
-});
-
-module.exports = app;
+module.exports = server;
